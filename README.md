@@ -1,1 +1,1 @@
-# react-guide
+# React - Maximilian Schwarzmüller The Complete Guide
