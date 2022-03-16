@@ -7,10 +7,10 @@
     },
     "servers": [
       {
-        "url": "url datafleet"
+        "url": "http://localhost:8080 - Local"
       },
       {
-        "url": "url datafleet"
+        "url": "https://datafleet.io:44380/v1 - Production"
       }
     ],
     "paths": {
@@ -59,11 +59,11 @@
           ],
           "x-codegen-request-body-name": "body"
         },
-        "get": {
+        "post": {
           "tags": [
-            "users"
+            "auth"
           ],
-          "summary": "Add a new pet to the store",
+          "summary": "comentario",
           "operationId": "addPet",
           "responses": {
             "405": {
