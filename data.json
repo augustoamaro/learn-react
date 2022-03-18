@@ -23,7 +23,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Pet"
+                "$ref": "#/components/schemas/Auth"
               }
             }
           },
@@ -45,7 +45,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Pet"
+                "$ref": "#/components/schemas/Auth"
               }
             }
           },
@@ -76,7 +76,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Pet"
+                "$ref": "#/components/schemas/Auth"
               }
             }
           },
@@ -125,7 +125,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/Auth"
                   }
                 }
               }
@@ -167,19 +167,11 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/Users"
                   }
                 }
               }
@@ -233,19 +225,11 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/Users"
                   }
                 }
               }
@@ -255,15 +239,7 @@
             "description": "Invalid status value",
             "content": {}
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
+        }
       }
     },
     "/users/{deleteId}": {
@@ -299,19 +275,11 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Pet"
+                    "$ref": "#/components/schemas/Users"
                   }
                 }
               }
@@ -335,7 +303,7 @@
   },
   "components": {
     "schemas": {
-      "Order": {
+      "Auth": {
         "type": "object",
         "properties": {
           "id": {
@@ -367,9 +335,6 @@
             "type": "boolean",
             "default": false
           }
-        },
-        "xml": {
-          "name": "Order"
         }
       },
       "Category": {
@@ -382,9 +347,6 @@
           "name": {
             "type": "string"
           }
-        },
-        "xml": {
-          "name": "Category"
         }
       },
       "User": {
@@ -417,9 +379,6 @@
             "description": "User Status",
             "format": "int32"
           }
-        },
-        "xml": {
-          "name": "User"
         }
       },
       "Tag": {
@@ -432,57 +391,30 @@
           "name": {
             "type": "string"
           }
-        },
-        "xml": {
-          "name": "Tag"
         }
       },
-      "Pet": {
-        "required": [
-          "name",
-          "photoUrls"
-        ],
+      "Order": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "category": {
-            "$ref": "#/components/schemas/Category"
-          },
-          "name": {
+          "user_name": {
             "type": "string",
-            "example": "doggie"
+            "example": "leonidas"
           },
-          "photoUrls": {
-            "type": "array",
-            "xml": {
-              "name": "photoUrl",
-              "wrapped": true
-            },
-            "items": {
-              "type": "string"
-            }
-          },
-          "tags": {
-            "type": "array",
-            "xml": {
-              "name": "tag",
-              "wrapped": true
-            },
-            "items": {
-              "$ref": "#/components/schemas/Tag"
-            }
-          },
-          "status": {
+          "email": {
             "type": "string",
-            "description": "pet status in the store",
-            "enum": [
-              "available",
-              "pending",
-              "sold"
-            ]
+            "example": "leonidas@monkeybranch.dev"
+          },
+          "password": {
+            "type": "string",
+            "example": "abracadabra"
+          },
+          "confirm_password": {
+            "type": "string",
+            "example": "abracadabra"
+          },
+          "role": {
+            "type": "string",
+            "example": "ADM"
           }
         }
       },
@@ -500,25 +432,6 @@
             "type": "string"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "petstore_auth": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "https://datafleet.io:44380",
-            "scopes": {
-              "write:pets": "modify pets in your account",
-              "read:pets": "read your pets"
-            }
-          }
-        }
-      },
-      "api_key": {
-        "type": "apiKey",
-        "name": "api_key",
-        "in": "header"
       }
     }
   }
