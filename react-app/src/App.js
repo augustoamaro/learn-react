@@ -12,7 +12,6 @@ const App = () => {
 
   return (
     <div>
-      <h1>Leggo</h1>
       <ExpenseItem items={expenses} />
     </div>
   );
